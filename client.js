@@ -96,6 +96,7 @@ console.log(employee5);
 // This problem is massive! Break the problem down. Use the debugger.
 // What is the fewest lines of code I can write and test to get just a little closer?
 
+
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
