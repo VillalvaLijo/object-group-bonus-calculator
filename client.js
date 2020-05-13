@@ -1,5 +1,4 @@
-const employees = [
-  {
+const employees = [{
     name: 'Atticus',
     employeeNumber: '2405',
     annualSalary: '47000',
@@ -31,26 +30,38 @@ const employees = [
   }
 ];
 
+
 function EmployeePayroll(object) {
   this.name = object.name;
   if (object.reviewRating <= 2) {
     this.bonusPercentage = 0
     this.totalCompensation = parseInt(object.annualSalary);
-  }
-  else if (object.reviewRating == 3) {
-    this.bonusPercentage = .04;
-    this.totalBonus = parseInt(object.annualSalary) * .04;
-    this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus
-  }
-  else if (object.reviewRating == 4) {
+  } else if (object.reviewRating == 3) {
+    if (object.employeeNumber.toString().length == 4) {
+      this.bonusPercentage = .09;
+      this.totalBonus = parseInt(object.annualSalary) * .09;
+      this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus;
+    } else {
+
+      this.bonusPercentage = .04;
+      this.totalBonus = parseInt(object.annualSalary) * .04;
+      this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus
+    }
+  } else if (object.reviewRating == 4) {
     this.bonusPercentage = .06;
     this.totalBonus = parseInt(object.annualSalary) * .06;
     this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus
-}
-  else if (object.reviewRating == 5) {
+  } else if (object.reviewRating == 5) {
     this.bonusPercentage = .10;
     this.totalBonus = parseInt(object.annualSalary) * .10;
     this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus
+  }
+  if (this.annualSalary > 65000 && this.bonusPercentage > .13){
+    this.bonusPercentage = .13;
+    this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus;
+  } else if (this.annualSalary > 65000 && this.bonusPercentage <= .13) {
+  this.bonusPercentage -= .01;
+  this.totalCompensation = parseInt(object.annualSalary) + this.totalBonus;
   }
 }
 //Test checkpoint bonus percentage based on reviewRating
@@ -60,31 +71,31 @@ let employee1 = new EmployeePayroll({
   annualSalary: '35000',
   reviewRating: 1
 });
-  let employee2 = new EmployeePayroll({
-    name: 'Atticus',
-    employeeNumber: '2405',
-    annualSalary: '47000',
-    reviewRating: 3
-  });
-  
-  let employee3 = new EmployeePayroll({
-    name: 'Jem',
-    employeeNumber: '62347',
-    annualSalary: '63500',
-    reviewRating: 4
-  });
-  let employee4 = new EmployeePayroll({
-    name: 'Scout',
-    employeeNumber: '6243',
-    annualSalary: '74750',
-    reviewRating: 5
-  });
-  let employee5 = new EmployeePayroll({
-    name: 'Robert',
-    employeeNumber: '26835',
-    annualSalary: '66000',
-    reviewRating: 1
-  });
+let employee2 = new EmployeePayroll({
+  name: 'Atticus',
+  employeeNumber: '2405',
+  annualSalary: '47000',
+  reviewRating: 3
+});
+
+let employee3 = new EmployeePayroll({
+  name: 'Jem',
+  employeeNumber: '62347',
+  annualSalary: '63500',
+  reviewRating: 4
+});
+let employee4 = new EmployeePayroll({
+  name: 'Scout',
+  employeeNumber: '6243',
+  annualSalary: '74750',
+  reviewRating: 5
+});
+let employee5 = new EmployeePayroll({
+  name: 'Robert',
+  employeeNumber: '26835',
+  annualSalary: '66000',
+  reviewRating: 1
+});
 console.log(employee1);
 console.log(employee2);
 console.log(employee3);
